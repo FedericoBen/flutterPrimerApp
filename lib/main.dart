@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/Pagina02.dart';
 
 void main() => runApp(MiApp());
 
@@ -24,77 +25,24 @@ class Inicio extends StatefulWidget {
 class _InicioState extends State<Inicio> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: cuerpo());
-  }
-}
-
-Widget cuerpo() {
-  return Container(
-    decoration: BoxDecoration(
-      image: DecorationImage(
-          image: NetworkImage(
-              "https://i.pinimg.com/originals/31/38/31/3138319b9daa9c91a0ab8f4efee5d8e8.jpg"),
-          fit: BoxFit.cover),
-    ),
-    child: Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          SingIn(),
-          SizedBox(
-            height: 10,
+    return Scaffold(
+        appBar: (AppBar(
+          title: Text("pagina 01"),
+        )),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text('Home'),
+              RaisedButton(
+                  child: Text("Ir a la otra pagina"),
+                  onPressed: () => {
+                        print("Presionaste el boton"),
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Pagina02()))
+                      })
+            ],
           ),
-          campoUsuario(),
-          password(),
-          entrar()
-        ],
-      ),
-    ),
-  );
-}
-
-Widget SingIn() {
-  return Text(
-    "Sign in",
-    style: TextStyle(
-        color: Colors.white, fontSize: 25.0, fontWeight: FontWeight.bold),
-  );
-}
-
-Widget campoUsuario() {
-  return Container(
-    padding: EdgeInsets.symmetric(horizontal: 60, vertical: 5),
-    child: TextField(
-        decoration: InputDecoration(
-            hintText: "Email",
-            fillColor: Colors.black45,
-            filled: true,
-            hintStyle: TextStyle(color: Colors.white)),
-        style: TextStyle(color: Colors.white)),
-  );
-}
-
-Widget password() {
-  return Container(
-    padding: EdgeInsets.symmetric(horizontal: 60, vertical: 5),
-    child: TextField(
-        obscureText: true,
-        decoration: InputDecoration(
-            hintText: "Password",
-            fillColor: Colors.black45,
-            filled: true,
-            hintStyle: TextStyle(color: Colors.white)),
-        style: TextStyle(color: Colors.white)),
-  );
-}
-
-Widget entrar() {
-  return FlatButton(
-      color: Colors.blueAccent,
-      padding: EdgeInsets.symmetric(horizontal: 60, vertical: 10),
-      onPressed: () {},
-      child: Text(
-        "Enter",
-        style: TextStyle(fontSize: 15, color: Colors.white),
-      ));
+        ));
+  }
 }
